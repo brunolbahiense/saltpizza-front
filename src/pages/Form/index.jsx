@@ -37,11 +37,11 @@ function Register() {
                 message: form.message,
             })
             setTimeout(() => {
-                window.location.reload()
+                //window.location.reload()
             }, 2000)
         } catch (error) {
             setTimeout(() => {
-                window.location.reload()
+                //window.location.reload()
             }, 2000)
         }
 
