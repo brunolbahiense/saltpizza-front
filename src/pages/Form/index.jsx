@@ -7,8 +7,6 @@ import api from '../../services/api'
 function Register() {
     const [form, setForm] = useState({ phone: '', message: ''})
     const [error, setError] = useState(false)
-    const [backMessage, setBackMessage] = useState(false)
-    const [Statmessage, setMessage] = useState('')
 
     const handleChange = e => {
         const key = e.target.name
@@ -34,23 +32,17 @@ function Register() {
         }
 
         try {
-            
-            const response = await api.post('/', {
+            await api.post('/', {
                 to: form.phone, 
                 message: form.message,
             })
-            setMessage(response.data)
-            setBackMessage(true)
             setTimeout(() => {
                 window.location.reload()
-            }, 3000)
+            }, 2000)
         } catch (error) {
-            setMessage(error.response.data)
-            setBackMessage(true)
             setTimeout(() => {
-                setBackMessage(false)
                 window.location.reload()
-            }, 3000)
+            }, 2000)
         }
 
     }
@@ -91,7 +83,6 @@ function Register() {
                 </Button>
 
                 {error && <span className='error'>Todos os campos são obrigatórios</span>}
-                {backMessage && <span className={error ? 'error' : 'sucess'}>{Statmessage}</span>}
             </Form>
 
         </div>
